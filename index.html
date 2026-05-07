@@ -1,22 +1,31 @@
-<!DOCTYPE html>
-<html>
-  <head>
-    <base target="_top">
-    <style>
-      body { font-family: sans-serif; }
-      table { border-collapse: collapse; width: 100%; }
-      th, td { border: 1px solid #ccc; padding: 8px; text-align: left; }
-      th { background-color: #f2 f2 f2; }
-    </style>
-  </head>
-  <body>
-    <h2>食事数集計レポート</h2>
-    <table>
-      <tr><th>項目</th><th>数量</th></tr>
-      <tr><td>朝食</td><td>20</td></tr>
-      <tr><td>昼食</td><td>25</td></tr>
-      <tr><td>夕食</td><td>22</td></tr>
-    </table>
-    <p>更新日時: 2026/5/7 22:40:30</p>
-  </body>
-</html>
+
+    <!DOCTYPE html>
+    <html>
+    <head>
+      <meta charset="UTF-8">
+      <title>集計レポート</title>
+      <style>
+        body { font-family: sans-serif; margin: 40px; line-height: 1.6; }
+        .container { max-width: 600px; margin: auto; border: 1px solid #ddd; padding: 20px; border-radius: 8px; }
+        h1 { color: #333; border-bottom: 2px solid #007bff; padding-bottom: 10px; }
+        .data-item { margin-bottom: 15px; font-size: 1.2em; }
+        .label { font-weight: bold; color: #555; }
+        .footer { margin-top: 30px; font-size: 0.8em; color: #888; }
+      </style>
+    </head>
+    <body>
+      <div class="container">
+        <h1>📊 数量・金額集計レポート</h1>
+        <div class="data-item">
+          <span class="label">数量合計:</span> 12,131
+        </div>
+        <div class="data-item">
+          <span class="label">金額合計:</span> 25,054,700 円
+        </div>
+        <div class="footer">
+          最終更新: 2026/05/07 23:08
+        </div>
+      </div>
+    </body>
+    </html>
+  
