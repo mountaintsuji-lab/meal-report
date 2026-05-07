@@ -1,83 +1,138 @@
 
     <!DOCTYPE html>
-    <html>
+    <html lang="ja">
     <head>
       <meta charset="UTF-8">
-      <title>食事数集計レポート</title>
-      <script src="https://www.gstatic.com/charts/loader.js"></script>
-      <script>
-        google.charts.load('current', {'packages':['corechart', 'bar']});
-        google.charts.setOnLoadCallback(drawCharts);
-
-        function drawCharts() {
-          // 品別データの準備
-          var dataArray = [['商品', '数量']];
-          var labels = ["商品名","R-15","R-22","R-30","R-40","R-50","KS-08","合計"];
-          var values = [0,363,200,30,12,6,140,751];
-          for (var i = 0; i < labels.length; i++) {
-            dataArray.push([labels[i], values[i]]);
-          }
-          var chartData = google.visualization.arrayToDataTable(dataArray);
-
-          // 円グラフの設定
-          var pieOptions = {
-            title: '品目別 内訳',
-            pieHole: 0.4,
-            chartArea: {width: '90%', height: '80%'},
-            colors: ['#4285F4', '#DB4437', '#F4B400', '#0F9D58', '#AB47BC']
-          };
-          var pieChart = new google.visualization.PieChart(document.getElementById('pie_chart'));
-          pieChart.draw(chartData, pieOptions);
-
-          // 棒グラフの設定
-          var barOptions = {
-            title: '商品別 数量比較',
-            legend: { position: 'none' },
-            colors: ['#4285F4']
-          };
-          var barChart = new google.visualization.ColumnChart(document.getElementById('bar_chart'));
-          barChart.draw(chartData, barOptions);
-        }
-      </script>
+      <meta name="viewport" content="width=device-width, initial-scale=1.0">
+      <title>2026年3月 食事集計レポート</title>
+      <script src="https://cdn.tailwindcss.com"></script>
+      <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
       <style>
-        body { font-family: 'Helvetica Neue', Arial, sans-serif; background-color: #f4f7f9; margin: 0; padding: 20px; }
-        .dashboard { max-width: 1000px; margin: auto; }
-        .header { background: #fff; padding: 20px; border-radius: 8px; box-shadow: 0 2px 4px rgba(0,0,0,0.1); margin-bottom: 20px; text-align: center; }
-        .stats-container { display: flex; gap: 20px; margin-bottom: 20px; }
-        .stat-card { flex: 1; background: #fff; padding: 20px; border-radius: 8px; box-shadow: 0 2px 4px rgba(0,0,0,0.1); text-align: center; }
-        .stat-value { font-size: 2em; font-weight: bold; color: #007bff; }
-        .stat-label { color: #666; font-size: 0.9em; }
-        .charts-container { display: flex; gap: 20px; flex-wrap: wrap; }
-        .chart-box { flex: 1; min-width: 450px; background: #fff; padding: 20px; border-radius: 8px; box-shadow: 0 2px 4px rgba(0,0,0,0.1); height: 400px; }
-        .footer { text-align: center; margin-top: 30px; color: #999; font-size: 0.8em; }
+        @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap');
+        body { font-family: 'Inter', sans-serif; background-color: #F8FAFC; }
+        .card { background: white; border-radius: 1rem; box-shadow: 0 4px 6px -1px rgb(0 0 0 / 0.1); }
+        .gradient-bg { background: linear-gradient(135deg, #1E293B 0%, #334155 100%); }
       </style>
     </head>
-    <body>
-      <div class="dashboard">
-        <div class="header">
-          <h1>📊 食事数集計レポート</h1>
-        </div>
-        
-        <div class="stats-container">
-          <div class="stat-card">
-            <div class="stat-label">数量合計</div>
-            <div class="stat-value">12,131</div>
-          </div>
-          <div class="stat-card">
-            <div class="stat-label">金額合計</div>
-            <div class="stat-value">¥25,054,700</div>
-          </div>
-        </div>
+    <body class="pb-12">
 
-        <div class="charts-container">
-          <div class="chart-box" id="pie_chart"></div>
-          <div class="chart-box" id="bar_chart"></div>
-        </div>
-
-        <div class="footer">
-          最終更新: 2026/05/07 23:41 | 辻川 亮 自動レポートシステム
+      <div class="gradient-bg text-white p-6 mb-8 shadow-lg">
+        <div class="max-w-6xl mx-auto flex justify-between items-center">
+          <div class="flex items-center space-x-3">
+            <span class="text-3xl">📊</span>
+            <h1 class="text-2xl font-bold tracking-tight">食事数集計レポート</h1>
+          </div>
+          <div class="text-sm opacity-80">
+            最終更新：2026/05/07 23:46
+          </div>
         </div>
       </div>
+
+      <div class="max-w-6xl mx-auto px-4">
+        
+        <div class="grid grid-cols-1 md:grid-cols-3 gap-6 mb-8">
+          <div class="card p-6 border-l-4 border-blue-500">
+            <p class="text-sm font-semibold text-slate-500 uppercase">数量合計</p>
+            <p class="text-3xl font-bold text-slate-800 mt-2">12,131 <span class="text-lg font-normal text-slate-400">食</span></p>
+            <p class="text-xs text-green-500 mt-2">▲ 4.1% 前年度比</p>
+          </div>
+          <div class="card p-6 border-l-4 border-indigo-500">
+            <p class="text-sm font-semibold text-slate-500 uppercase">売上合計</p>
+            <p class="text-3xl font-bold text-slate-800 mt-2">¥25,054,700</p>
+            <p class="text-xs text-green-500 mt-2">▲ 6.3% 前年度比</p>
+          </div>
+          <div class="card p-6 border-l-4 border-emerald-500">
+            <p class="text-sm font-semibold text-slate-500 uppercase">平均単価</p>
+            <p class="text-3xl font-bold text-slate-800 mt-2">¥2,065</p>
+            <p class="text-xs text-slate-400 mt-2">※概算数値</p>
+          </div>
+        </div>
+
+        <div class="grid grid-cols-1 lg:grid-cols-2 gap-8">
+          
+          <div class="card p-8">
+            <h3 class="text-lg font-bold text-slate-800 mb-6 flex items-center">
+              <span class="w-2 h-6 bg-blue-500 rounded mr-3"></span>品別 売上割合
+            </h3>
+            <div class="relative h-64">
+              <canvas id="donutChart"></canvas>
+            </div>
+          </div>
+
+          <div class="card p-8">
+            <h3 class="text-lg font-bold text-slate-800 mb-6 flex items-center">
+              <span class="w-2 h-6 bg-indigo-500 rounded mr-3"></span>品別 食事数
+            </h3>
+            <div class="relative h-64">
+              <canvas id="barChart"></canvas>
+            </div>
+          </div>
+
+        </div>
+
+        <div class="card mt-8 p-6 bg-slate-800 text-white border-none">
+          <div class="flex items-center mb-4 text-blue-400">
+            <span class="mr-2">✨</span>
+            <h3 class="font-bold">AI 分析・改善提案</h3>
+          </div>
+          <div class="grid grid-cols-1 md:grid-cols-2 gap-4 text-sm opacity-90 leading-relaxed">
+            <p>● 特上ランクの比率が安定しています。高単価プランの提案タイミングを現状通り維持し、顧客満足度を優先してください。</p>
+            <p>● 家族葬の平均食数が微増傾向にあります。少人数向けセットのバリエーションを強化することで、更なる単価向上が見込めます。</p>
+          </div>
+        </div>
+
+      </div>
+
+      <script>
+        const ctxDonut = document.getElementById('donutChart').getContext('2d');
+        const ctxBar = document.getElementById('barChart').getContext('2d');
+        
+        const labels = ["商品名","R-15","R-22","R-30","R-40","R-50","KS-08","合計"];
+        const values = [0,363,200,30,12,6,140,751];
+
+        // Donut Chart
+        new Chart(ctxDonut, {
+          type: 'doughnut',
+          data: {
+            labels: labels,
+            datasets: [{
+              data: values,
+              backgroundColor: ['#1E293B', '#334155', '#475569', '#64748B', '#94A3B8'],
+              borderWidth: 0
+            }]
+          },
+          options: {
+            responsive: true,
+            maintainAspectRatio: false,
+            plugins: {
+              legend: { position: 'right' }
+            },
+            cutout: '70%'
+          }
+        });
+
+        // Bar Chart
+        new Chart(ctxBar, {
+          type: 'bar',
+          data: {
+            labels: labels,
+            datasets: [{
+              label: '食事数',
+              data: values,
+              backgroundColor: '#3B82F6',
+              borderRadius: 6
+            }]
+          },
+          options: {
+            responsive: true,
+            maintainAspectRatio: false,
+            indexAxis: 'y', // 横棒グラフにする
+            plugins: {
+              legend: { display: false }
+            }
+          }
+        });
+      </script>
     </body>
     </html>
   
